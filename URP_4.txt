@@ -1,0 +1,47 @@
+URP
+Menu 4
+Monday
+Breakfast
+French toast, scrambled eggs, bacon, sausage, fruit
+Lunch
+Ground beef, brioche bun, coleslaw, bacon, ranch house salad, ranch dressing
+Dinner
+Chicken, mashed potato, vegetables, house salad, balsamic dressing
+Tuesday
+Breakfast
+scrambled eggs, bacon, sausage, breakfast potatoes, fruit
+Lunch
+Chicken breast, bacon, lettuce, tomato, remoulade sauce, kaiser roll, mediterranean pasta salad, spinach garden salad, creamy italian dressing
+Dinner
+Ground beef, pico de gallo, sour cream, cheese, tortillas soft, tortillas hard, corn, mexican salad, lime vinaigrette dressing
+Wednesday
+Breakfast
+Buttermilk pancakes, scrambled eggs, sausage, bacon, fruit
+Lunch
+Pork, fried rice, zucchini, yum-yum sauce, asian salad, honey ginger dressing
+Dinner
+Salmon, red potato, vegetables, lemon, house salad, balsamic dressing
+Thursday
+Breakfast
+Beef empanadas, scrambled eggs, sausage, bacon, fruit
+Lunch
+Chicken breast, peppers, onions, queso, rice, tortillas, mexican salad, lime vinaigrette dressing
+Dinner
+Flank steak, sweet potato, vegetables, cranberry walnut salad, dressing
+Friday
+Breakfast
+Biscuits, sausage, sausage gravy, scrambled eggs, bacon, fruit
+Saturday
+Breakfast
+Yogurt, granola, berries, honey, scrambled eggs, bacon, sausage, fruit
+Lunch
+Shrimp, rice, vegetable, spring house salad, creamy italian dressing
+Dinner
+Chicken breast, sundried tomato, spinach, cream sauce, penne pasta, garden salad, balsamic dressing
+Sunday
+Breakfast
+Waffles, scrambled eggs, sausage, bacon, fruit
+Lunch
+Italian sausage, peppers, onions, olive oil, herbs, hoagie, homestyle potato salad, house salad, balsamic dressing
+Dinner
+Chicken cutlets, marinara, mozzarella, parmesan cheese, penne pasta, side caesar salad, dressing

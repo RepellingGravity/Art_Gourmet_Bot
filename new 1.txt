@@ -1,0 +1,78 @@
+Breakfast 8:00am
+	URP North 8:00am
+	URP South 8:00am
+	Arcstone 8:00am
+	
+	mandala
+	
+Lunch 
+	Legacy 11:15am
+	Ignite 12:00pm
+	
+	URP North 10:45am
+	URP South by 11:45pm
+	Aria WPB by 12:00pm
+	
+	Mandala by 12:00
+	
+	Aria Boca by 12:00pm
+	Arcstone by 12:00pm
+	Archway 12:30pm
+
+Dinner by 5:00pm
+	URP North
+	URP South
+	Arcstone
+	Aria WPB
+	Aria Boca
+	Mandala
+
+create checklists per individual location
+
+URP North
+45 W 17th St, Riviera Beach, FL 33404
+Front door: 2515
+
+URP South
+4865 40th Way S, Lake Worth, FL 33461
+Gate: 0603#
+Fridge: 247
+
+Archstone
+501 W Perry St, Lantana, FL 3346
+
+Aria WPB
+950 Evernia St, West Palm Beach, FL 33401
+Maybe door?: #8252#
+
+Aria Boca
+899 Meadows Rd, Boca Raton, FL 33486
+
+Mandala
+5406 East Ave, West Palm Beach, FL 33407
+
+Legacy
+1425 W Cypress Creek Rd, Fort Lauderdale, FL 33309
+
+Ignite
+4850 W Oakland Park Blvd, Ste 257, Lauderdale Lakes, FL 33313
+
+Cheney brothers headquarters
+1 Cheney Way, Riviera Beach, FL 33404
+
+Gas code 38009
+
+
+
+
+yes syrup
+
+
+breakfast 
+6:00 to 8:00
+
+lunch
+9:00 to 12:30
+
+dinner 
+1:00 to 5:30
