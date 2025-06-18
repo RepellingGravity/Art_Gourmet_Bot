@@ -1,11 +1,12 @@
 import time
-from playwright.sync_api import sync_playwright, expect
+from playwright.sync_api import sync_playwright
 
 JOLT_LOGIN_URL = "https://app.joltup.com/account#/login"
 JOLT_LISTS_URL = "https://app.joltup.com/content/lists/"
 
 JOLT_GROUP_NAME = "Group_001"
 DRIVER_CHECKLISTS_FOLDER_NAME = "Driver Checklists"
+SCRIPT_TESTS_FOLDER_NAME = "Script Tests"
 
 URP_MENU_4_FILEPATH = "URP_4.txt"
 
@@ -26,9 +27,10 @@ def main():
     playwright, browser, page = start_playwright()
     jolt_login(page, username, password)
     go_to_lists_homepage(page)
-    set_group_mode(page, JOLT_GROUP_NAME)
+    set_content_group_mode(page)
     set_group_root_folder(page, JOLT_GROUP_NAME)
     click_on_text(page, DRIVER_CHECKLISTS_FOLDER_NAME)
+    click_on_text(page, SCRIPT_TESTS_FOLDER_NAME)
     click_add_list(page, "test name")
     click_add_list_item(page)
     click_checkmark_item(page)
@@ -37,6 +39,7 @@ def main():
     click_photo_item(page)
     fill_prompt_text(page, "photo test fill")
     save_list(page)
+    exit_list(page)
     time.sleep(10000)
     stop_playwright(browser, playwright)
     
@@ -59,57 +62,50 @@ def jolt_login(page, username, password):
     
 def go_to_lists_homepage(page):
     page.goto(JOLT_LISTS_URL)
-    page.get_by_role("table").locator(".list-template-index-table").wait_for(state="visible")
-    # must use user facing elements table didnt work but "Name" in the column did since we can 
-    # directly see it, try in all places to get to the front most part of the tree
+    page.get_by_role("table").wait_for(state="visible")
 
-def set_group_mode(page, group_name):
-    page.locator(".entity-button isEntitySwitcherButton").click()
+def set_content_group_mode(page):
+    page.locator(".entity-button.isEntitySwitcherButton").click()
     page.locator(".entity-tiles").wait_for(state="visible")
-    page.get_by_role("button").get_by_text(group_name).click()
+    page.locator(".is-content-group").click()
     page.locator(".list-template-header").wait_for(state="hidden")
     page.locator(".list-template-header").wait_for(state="visible")
 
 def set_group_root_folder(page, folder_name):
-    page.locator(".name body2").get_by_text(folder_name).click()
+    page.locator(".name.body2").get_by_text(folder_name).click()
     
 def click_on_text(page, text):
     page.get_by_text(text).click()
     
 def click_add_list(page, list_name):
     page.get_by_test_id("button-circle").click()
-    page.get_by_role("textbox", name="list-title").fill(list_name)
+    page.locator("#input-list-title").fill(list_name)
     page.get_by_role("button").get_by_text("Confirm").click()
     page.get_by_role("heading", name="Edit List Name").wait_for(state="hidden")
     
 def click_add_list_item(page):
     page.get_by_role("button").get_by_text("+ ADD ITEM").click()
-    page.get_by_role("header", name="Select an item type").wait_for(state="visible")
+    page.get_by_role("heading", name="Select an item type").wait_for(state="visible")
     
 def click_checkmark_item(page):
-    page.locator(".list-check-bold").click()
-    page.locator(".list-check-bold").wait_for(state="hidden")
-    verify_list_item_active(page)
+    page.locator(".list-check-bold").first.click()
+    page.locator(".list-check-bold").first.wait_for(state="hidden")
     
 def click_photo_item(page):
-    page.locator(".list-camera").click()
-    page.locator(".list-camera").wait_for(state="hidden")
-    verify_list_item_active(page)
-    
-def verify_list_item_active(page):
-    item_index = page.locator(".itemTemplateCardDragDrop").count() - 1
-    page.locator(".itemTemplateCardDragDrop").nth(item_index).locator("is-selected").wait_for(state="visible")
-    
+    page.locator(".list-camera").first.click()
+    page.locator(".list-camera").first.wait_for(state="hidden")
+        
 def fill_prompt_text(page, text):
-    page.get_by_role("textbox", name="text").fill(text)
+    page.wait_for_timeout(500)
+    page.locator(".textarea#textarea-text").fill(text)
+    page.wait_for_timeout(500)
     
 def save_list(page):
     page.get_by_role("button").get_by_text("SAVE").click()
-    page.get_by_role("heading", name="Edit List Name").wait_for(state="visible")
-    page.get_by_role("button").get_by_text("Cancel").click()
-    page.get_by_role("heading", name="Edit List Name").wait_for(state="hidden")
-    page.get_by_role("button", name="Previous Page Button").click()
-    page.get_by_role("table").locator(".list-template-index-table").wait_for(state="visible")
+
+def exit_list(page):
+    page.locator(".list-arrow-left").click()
+    page.get_by_role("table").wait_for(state="visible")
 
 if __name__ == "__main__":
     main()
