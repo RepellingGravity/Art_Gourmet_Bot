@@ -102,10 +102,61 @@ def fill_prompt_text(page, text):
     
 def save_list(page):
     page.get_by_role("button").get_by_text("SAVE").click()
+    page.locator(".tabs-wrapper").wait_for(state="hidden")
+    page.locator(".tabs-wrapper").wait_for(state="visible")
+    cancel_if_rename_prompt(page)
 
 def exit_list(page):
     page.locator(".list-arrow-left").click()
     page.get_by_role("table").wait_for(state="visible")
+
+def click_list_settings(page):
+    page.get_by_role("listitem", name="SETTINGS").click()
+    page.locator(".tabs-wrapper").wait_for(state="hidden")
+    page.locator(".tabs-wrapper").wait_for(state="visible")
+    cancel_if_rename_prompt(page)
+
+def click_list_items(page):
+    page.get_by_role("listitem", name="ITEMS").click()
+    page.locator(".tabs-wrapper").wait_for(state="hidden")
+    page.locator(".tabs-wrapper").wait_for(state="visible")
+    cancel_if_rename_prompt(page)
+
+def cancel_if_rename_prompt(page):
+    page.locator(".tabs-wrapper").wait_for(state="visible")
+    if page.get_by_role("button").get_by_text("Cancel").is_visible():
+        page.get_by_role("button").get_by_text("Cancel").click()
+        page.get_by_role("heading", name="Edit List Name").wait_for(state="hidden")
+
+def set_list_due(page, time, time_type):
+    page.locator(".unscheduledTimeToDueInput").fill(time)
+    page.locator(".unscheduledTimeToDueSelect").select_option(time_type) # "minutes", "hours", "days", "weeks", "months"
+
+def set_list_expire(page, time, time_type):
+    page.locator(".unscheduledTimeToExpireInput").fill(time)
+    page.locator(".unscheduledTimeToExpireSelect").select_option(time_type) # "minutes", "hours", "days", "weeks", "months"
+
+def create_display_time(page):
+    page.locator(".hasDivergedContent").get_by_role("button").click()
+    page.get_by_role("heading", name="List Schedule").wait_for(state="visible")
+
+def new_display_time(page, hour, minute, ampm):
+    page.get_by_role("button", name="+ New Display Time").click()
+    page.locator(".ui-dialog-content").locator(".TimeSelectorDD-hours").select_option(hour) # "01", "02", ..., "12"
+    page.locator(".ui-dialog-content").locator(".TimeSelectorDD-minutes").select_option(minute) # "05", "10", "15", ..., "55"
+    page.locator(".ui-dialog-content").locator(".TimeSelectorDD-ampm").select_option(ampm) # "0", "1" (AM/PM)
+
+def set_display_repeat(page, start_date, repeat_interval, interval_type):
+    page.locator(".ui-dialog-content").locator(".dowsordatesRadio").last.click()
+    page.locator(".ui-dialog-content").locator(".interval_parent").wait_for(state="visible")
+    page.locator(".ui-dialog-content").locator(".interval_parent").fill(start_date) # "MM/DD/YYYY"
+    page.locator(".ui-dialog-content").locator(".interval_amount").fill(repeat_interval) # "1", "2", "3", ...
+    page.locator(".ui-dialog-content").locator(".interval_type").select_option(interval_type) # "0", "1" (days, weeks)
+
+def complete_display_time(page):
+    page.get_by_role("button", name="Done").click()
+    
+
 
 if __name__ == "__main__":
     main()
